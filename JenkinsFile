@@ -10,7 +10,7 @@ pipeline {
                         sh "date >> TestFile.txt"
                         sh "file -i example"
                         sh "cat example"
-                        sh "iconv -f ELF64 -t UTF-8//TRANSLIT example -o TestFile.txt"
+                        sh "iconv -f binary -t UTF-8//TRANSLIT example -o TestFile.txt"
                         sh "cat TestFile.txt"
                         sh "file -i TestFile.txt"
                         }
