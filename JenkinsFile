@@ -8,7 +8,7 @@ pipeline {
                         {
                         sh "c++ -I /var/lib/jenkins/workspace/Boost_unit_test SampleTest.cpp -o example"
                         sh "date > TestFile.txt"
-                        sh "printf | ./example > TestFile.txt"
+                        sh "echo | ./example | sed 's/\x1B\[[0-9;]\{1,\}[A-Za-z]//g' >> TestFile.txt"
                         }
                 }
             }
