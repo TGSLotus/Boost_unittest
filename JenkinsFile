@@ -7,12 +7,8 @@ pipeline {
                     catchError(buildResult:'SUCCESS', stageResult: 'FAILURE')
                         {
                         sh "c++ -I /var/lib/jenkins/workspace/Boost_unit_test SampleTest.cpp -o example"
-                        sh "date >> TestFile.txt"
-                        sh "file -i example"
-                        sh "cat example"
-                        sh "iconv -f binary -t UTF-8//TRANSLIT example -o TestFile.txt"
-                        sh "cat TestFile.txt"
-                        sh "file -i TestFile.txt"
+                        sh "date > TestFile.txt"
+                        sh "printf | ./example > TestFile.txt"
                         }
                 }
             }
