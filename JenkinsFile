@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        COLORSTR = "s/\x1B\[[0-9;]\{1,\}[A-Za-z]//g"
+    }
     stages {
         stage ("Shell execute"){
             steps {
@@ -8,7 +11,7 @@ pipeline {
                         {
                         sh "c++ -I /var/lib/jenkins/workspace/Boost_unit_test SampleTest.cpp -o example"
                         sh "date > TestFile.txt"
-                        sh "echo | ./example | sed 's/\x1B\[[0-9;]\{1,\}[A-Za-z]//g' >> TestFile.txt"
+                        sh "echo | ./example | sed '${COLORSTR}' >> TestFile.txt"
                         }
                 }
             }
